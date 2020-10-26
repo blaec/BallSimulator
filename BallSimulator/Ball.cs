@@ -6,12 +6,14 @@ namespace BallSimulator
 {
     class Ball
     {
-        public event EventHandler BallInPlay;
-        public void OnBallInPlay(BallEventArgs e)
+        public event EventHandler<BallEventArgs> BallInPlay;
+        protected void OnBallInPlay(BallEventArgs e)
         {
-            EventHandler ballInPlay = BallInPlay;
-            if (ballInPlay != null)
-                ballInPlay(this, e);
+            BallInPlay?.Invoke(this, e);
+        }
+        public Bat GetNewBat()
+        {
+            return new Bat(new BatCallback(OnBallInPlay));
         }
     }
 }

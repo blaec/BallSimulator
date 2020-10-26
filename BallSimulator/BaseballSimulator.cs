@@ -24,8 +24,9 @@ namespace BallSimulator
         }
         public void PlayBall()
         {
+            Bat bat = ball.GetNewBat();
             BallEventArgs ballEventArgs = new BallEventArgs(Trajectory, Distance);
-            ball.OnBallInPlay(ballEventArgs);
+            bat.HitTheBall(ballEventArgs);
         }
     }
 }
